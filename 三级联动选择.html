@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三级联动选择</title>
+	<style type="text/css">
+		select{
+			width: 150px;
+			height: 25px;
+			line-height: 25px;
+			text-align: center;
+			font：16px "楷体";
+		}
+	</style>
+</head>
+<body>
+	地址：<span id="adder"></span><br/>
+	<select id="province">
+		<option>--请选择--</option>
+	</select>
+	<select  id="city">
+		<option>--请选择--</option>
+	</select>
+	<select  id="xian">
+		<option>--请选择--</option>
+	</select>
+	
+</body>
+<script typet="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(window).load(function () {
+		// 
+
+		var aprovince=["江西省","广东省","湖南省"]
+		var acity=[["南昌市","九江市","景德市镇市","萍乡市","新余市","鹰潭市","赣州市","宜春市","上饶市","吉安市","抚州市"],["广州市","深圳市","惠州市","中山市"],["长沙市","湖南的市1","湖南的市2","湖南的市3","湖南的市4"]]
+		var axian=[
+				[["东湖区","西湖区","青云谱区","湾里区","青山湖区","南昌县","新建县","进贤县","安义县"],
+				 ["浔阳区","庐山区","九江县","武宁县","修水县","永修县","德安县","星子县","都昌县","湖口县","彭泽县"],
+				 ["昌江区","珠山区","乐平市","浮梁县"],
+				 ["安源区","湘东区","上栗县","芦溪县","莲花县"],
+				 ["111"],
+				 ["222"],
+				 ["于都县"],
+				 ["444"],
+				 ["555"],
+				 ["666"],
+				 ["777"]],
+
+				[
+				["越秀区","东山区","海珠区","荔湾区","天河区","白云区","黄埔区","芳村区","花都区","番禺区"],
+				 ["深圳的区","深圳的区","深圳的区","深圳的区","深圳的区"],
+				 ["惠州市的县","惠州市的县","惠州市的县","惠州市的县","惠州市的县"],
+				 ["中山的县区","中山的县区","中山的县区","中山的县区","中山的县区"]],
+
+
+				[ ["长沙的县区"],
+				 ["其他县区1"],
+				 ["其他县区2"],
+				 ["其他县区3"],
+				 ["其他县区4"]]
+
+				 ];
+				 //alert(xian.length);
+		var Oprovince=$("#province");
+		var ocity = $("#city");
+		var number1=null,number2=null;
+		var oxian=$("#xian");
+		var myadder=null;
+		for (var key in aprovince) {
+			// statement
+			Oprovince.append('<option>'+aprovince[key]+'</option>');
+		}
+		Oprovince.change(function () {
+			// body...
+			//alert($(this).children('option:selected').index());
+			number1=$(this).children('option:selected').index()-1;
+			//alert(acity[1]);
+			ocity.children().not(':eq(0)').remove();
+			oxian.children().not(':eq(0)').remove();
+			for (var i in acity[number1]) {
+			// statement
+			 ocity.append('<option>'+acity[number1][i]+'</option>');
+		}
+
+		});
+		ocity.change(function() {
+			/* Act on the event */
+			number2=$(this).children('option:selected').index()-1;
+			oxian.children().not(':eq(0)').remove();
+			//alert(axian[number1][0]);
+			for (var m in axian[number1][number2]) {
+				// statement
+				oxian.append('<option>'+axian[number1][number2][m]+'</opction>');				
+			}
+			
+			
+		});
+		oxian.change(function() {
+				/* Act on the event */
+				var number3=$(this).children('option:selected').index()-1;
+				myadder=aprovince[number1]+acity[number1][number2]+axian[number1][number2][number3];
+				$("#adder").text(myadder);
+				if(axian[number1][number2][number3]=="于都县"){
+					alert("于都是个好地方,于都欢迎您！");
+				}
+			});
+	})
+</script>
+</html>
