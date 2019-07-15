@@ -30,7 +30,6 @@
 <script type="text/javascript">
 	$(window).load(function () {
 		// 
-
 		var aprovince=["江西省","广东省","湖南省"]
 		var acity=[["南昌市","九江市","景德市镇市","萍乡市","新余市","鹰潭市","赣州市","宜春市","上饶市","吉安市","抚州市"],["广州市","深圳市","惠州市","中山市"],["长沙市","湖南的市1","湖南的市2","湖南的市3","湖南的市4"]]
 		var axian=[
@@ -81,7 +80,6 @@
 			// statement
 			 ocity.append('<option>'+acity[number1][i]+'</option>');
 		}
-
 		});
 		ocity.change(function() {
 			/* Act on the event */
@@ -91,9 +89,7 @@
 			for (var m in axian[number1][number2]) {
 				// statement
 				oxian.append('<option>'+axian[number1][number2][m]+'</opction>');				
-			}
-			
-			
+			}	
 		});
 		oxian.change(function() {
 				/* Act on the event */
